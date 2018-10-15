@@ -43,6 +43,16 @@ En sortie: [
  */
 
 function getFoodCategories(foods) {
+  let sent = "";
+  arr = foods.map(obj => {
+    if (obj.isVegetarian === true) {
+      sent = "is";
+    } else {
+      sent = "is not";
+    }
+    return `${obj.food} ${sent} suitable for vegetarians`
+  })
+  return arr;
 }
 
 

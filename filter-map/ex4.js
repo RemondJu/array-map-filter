@@ -64,7 +64,73 @@ En prenant les deux exemples d'arguments d'entrée, on obtiendrait ceci en sorti
 */
 
 function getActivitiesMembers(activities, persons) {
+  let activitiesPerPersons = activities.map(activity => {
+    return attr = {
+      activity: activity,
+      persons: []
+    };
+  });
+  console.log(activitiesPerPersons);
+
+  for (let i = 0; i < persons.length; i++) {
+    let personTemp = persons.filter(person => {
+      if (person.activities.includes(activities[i])) {
+        return person.name;
+      }
+    })
+    console.log(personTemp)
+    if (personTemp[i].name) {
+      activitiesPerPersons.map(item =>{ 
+        for (let j = 0; j < personTemp.length; j++)
+        {item.persons.push(personTemp[j].name)}
+      })
+    }
+  }
+  console.log(activitiesPerPersons);
+  return activitiesPerPersons;
 }
+
+getActivitiesMembers(['Badminton', 'Tennis', 'Volley-ball', 'Base-ball', 'Soccer', 'Basket-ball', 'Cycling'], [{
+    name: 'Jay Fox',
+    activities: ['Badminton']
+  },
+  {
+    name: 'Jenson Gardner',
+    activities: ['Badminton', 'Tennis']
+  },
+  {
+    name: 'Max Dean',
+    activities: ['Base-ball', 'Soccer']
+  },
+  {
+    name: 'Cody May',
+    activities: ['Basket-ball', 'Base-ball']
+  },
+  {
+    name: 'Nicholas Knight',
+    activities: ['Base-ball', 'Volley-ball']
+  },
+  {
+    name: 'Fletcher Estes',
+    activities: ['Basket-ball']
+  },
+  {
+    name: 'Jaydon Gallagher',
+    activities: ['Badminton', 'Basket-ball']
+  },
+  {
+    name: 'Efrain Rollins',
+    activities: ['Volley-ball', 'Tennis']
+  },
+  {
+    name: 'Tripp Cash',
+    activities: ['Badminton']
+  },
+  {
+    name: 'Ross Howard',
+    activities: ['Cycling']
+  }
+]);
 
 
 

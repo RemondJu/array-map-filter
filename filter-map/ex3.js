@@ -50,7 +50,28 @@ Sortie attendue:
 
 */
 
-function getStudentsPerCurriculum(campuses, curriculumName) {
+function getStudentsPerCurriculum(campuses, targetCurriculum) {
+  let store = [];
+  campuses.map(ville => {
+    let matchingCurri = ville.curriculums
+      .filter(curri => curri.name === targetCurriculum)
+      .map(curri => {
+        return {
+          ...curri,
+          townName: ville.city
+        };
+      });
+
+    store = [...store, ...matchingCurri];
+  });
+
+  console.log(store);
+  return store.map(obj => {
+    let rObj = {};
+    rObj[obj.townName] = obj.numStudents
+    return rObj;
+  }
+  );
 }
 
 module.exports = getStudentsPerCurriculum;
