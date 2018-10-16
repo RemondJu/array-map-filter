@@ -64,15 +64,23 @@ En prenant les deux exemples d'arguments d'entrée, on obtiendrait ceci en sorti
 */
 
 function getActivitiesMembers(activities, persons) {
-  let activitiesPerPersons = activities.map(activity => {
+  /*let activitiesPerPersons = activities.map(activity => {
     return attr = {
       activity: activity,
       persons: []
     };
-  });
-  console.log(activitiesPerPersons);
+  }); */
+    
+  let activitiesPerPersons = activities.map(activity => {
+    let personBad = persons.filter(person => {
+      return person.activities.includes(activity)
+    }).map(person => person.name);
+    return {activity: activity,
+      persons: [...personBad]
+    }
+  })
 
-  for (let i = 0; i < persons.length; i++) {
+  /* for (let i = 0; i < persons.length; i++) {
     let personTemp = persons.filter(person => {
       if (person.activities.includes(activities[i])) {
         return person.name;
@@ -85,12 +93,13 @@ function getActivitiesMembers(activities, persons) {
         {item.persons.push(personTemp[j].name)}
       })
     }
-  }
-  console.log(activitiesPerPersons);
+  } */
+  // console.log(activitiesPerPersons);
+
   return activitiesPerPersons;
 }
 
-getActivitiesMembers(['Badminton', 'Tennis', 'Volley-ball', 'Base-ball', 'Soccer', 'Basket-ball', 'Cycling'], [{
+/* getActivitiesMembers(['Badminton', 'Tennis', 'Volley-ball', 'Base-ball', 'Soccer', 'Basket-ball', 'Cycling'], [{
     name: 'Jay Fox',
     activities: ['Badminton']
   },
@@ -130,9 +139,7 @@ getActivitiesMembers(['Badminton', 'Tennis', 'Volley-ball', 'Base-ball', 'Soccer
     name: 'Ross Howard',
     activities: ['Cycling']
   }
-]);
-
-
+]); */
 
 // Ne pas modifier l'export
 module.exports = getActivitiesMembers;
